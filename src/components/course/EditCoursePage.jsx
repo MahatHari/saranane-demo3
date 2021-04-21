@@ -22,16 +22,16 @@ function EditCoursePage({
       loadCourses().catch((error) => {
         console.error('Loading courses failed' + error);
       });
-    } else {
+    } /* else {
       setCourse({ ...props.course });
-    }
+    } */
 
     if (authors.length === 0) {
       loadAuthors().catch((error) => {
         console.error('Loading authors failed' + error);
       });
     }
-  }, [props.course]);
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,9 +42,11 @@ function EditCoursePage({
   };
   const handleSave = (event) => {
     event.preventDefault();
-    saveCourse(course).then(() => {
+    saveCourse(course);
+
+    /* .then(() => {
       history.push('/courses');
-    });
+    }); */
   };
 
   return (
@@ -74,13 +76,13 @@ export function getCourseBySlug(courses, slug) {
 
 // courses is state.courses => from store
 function mapStateToProps(state, ownProps) {
-  const slug = ownProps.match.params.slug;
+  /* const slug = ownProps.match.params.slug;
   const course =
     slug && state.courses.length > 0
       ? getCourseBySlug(state.courses, slug)
-      : newCourse;
+      : newCourse; */
   return {
-    course,
+    course: newCourse,
     courses: state.courses,
     authors: state.authors,
   };

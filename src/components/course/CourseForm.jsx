@@ -25,8 +25,7 @@ const CourseForm = ({
         onChange={onChange}
         error={errors.title}
       />
-      {console.log(course, authors, onSave, onChange, saving, errors)}
-      {authors.map((aut) => console.log(aut.name, aut.id))}
+
       <InputSelect
         name='authorId'
         label='Author'
