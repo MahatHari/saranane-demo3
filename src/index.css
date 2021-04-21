@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#root{
+min-width: 460px;
+margin: 0 auto;
+}
+nav{
+    padding: 20px 0 20px 0;
+}
+tr:nth-child(odd) {
+    background-color: lightskyblue;
+    
+    }
+
+   tr:nth-child(even) {
+    background-color: rgb(103, 182, 242);
+    
+    }
+
+    th {
+       background-color: lightseagreen;
+    }
