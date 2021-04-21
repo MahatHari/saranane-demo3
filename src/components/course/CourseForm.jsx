@@ -2,14 +2,14 @@ import React from 'react';
 import InputText from '../shared/InputText';
 import InputSelect from '../shared/InputSelect';
 
-const CourseForm = (
+const CourseForm = ({
   course,
-  authors = {},
+  authors,
   onSave,
   onChange,
   saving = false,
-  errors = {}
-) => {
+  errors = {},
+}) => {
   return (
     <form onSubmit={onSave}>
       <h2>{course.id ? 'Edit' : 'Add'} Course</h2>
@@ -25,7 +25,8 @@ const CourseForm = (
         onChange={onChange}
         error={errors.title}
       />
-
+      {console.log(course, authors, onSave, onChange, saving, errors)}
+      {authors.map((aut) => console.log(aut.name, aut.id))}
       <InputSelect
         name='authorId'
         label='Author'

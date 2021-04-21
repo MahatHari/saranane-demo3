@@ -15,7 +15,7 @@ function EditCoursePage({
   history,
   ...props
 }) {
-  const [course, setcourse] = useState({ ...props.course });
+  const [course, setCourse] = useState({ ...props.course });
   const [errors, setErrors] = useState({});
   useEffect(() => {
     if (courses.length === 0) {
@@ -23,7 +23,7 @@ function EditCoursePage({
         console.error('Loading courses failed' + error);
       });
     } else {
-      setcourse({ ...props.course });
+      setCourse({ ...props.course });
     }
 
     if (authors.length === 0) {
@@ -35,7 +35,7 @@ function EditCoursePage({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setcourse((prev) => ({
+    setCourse((prev) => ({
       ...prev,
       [name]: name === 'authorId' ? parseInt(value, 10) : value,
     }));
@@ -50,12 +50,13 @@ function EditCoursePage({
   return (
     <div className='mt-5 py-md-5 px-md-4'>
       <h2>Edit Course</h2>
+
       <CourseForm
         course={course}
-        errors={errors}
         authors={authors}
-        onChange={handleChange}
         onSave={handleSave}
+        onChange={handleChange}
+        errors={errors}
       />
     </div>
   );
