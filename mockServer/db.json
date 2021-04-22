@@ -71,28 +71,12 @@
       "category": "HTML5"
     },
     {
-      "title": "Securing React Apps with Auth0",
-      "authorId": 1,
-      "category": "Python",
-      "createdAt": 1619065959779,
-      "slug": "securing-react-apps-with-auth0",
-      "id": 11
-    },
-    {
-      "id": 12,
-      "title": "Testing",
+      "id": 11,
+      "title": "Testing this is 4",
       "authorId": 2,
-      "category": "Testting Testing",
-      "createdAt": 1619065982617,
-      "slug": "testing"
-    },
-    {
-      "id": 13,
-      "title": "Testing Number 3",
-      "authorId": 3,
-      "category": "Testing for third time",
-      "createdAt": 1619068135720,
-      "slug": "testing-number-3"
+      "category": "Testing ",
+      "createdAt": 1619073347016,
+      "slug": "testing-this-is-4"
     }
   ],
   "authors": [

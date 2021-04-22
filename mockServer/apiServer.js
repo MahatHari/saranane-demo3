@@ -17,7 +17,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // simulate delay on all request
-server.use((req, res, next) => setTimeout(next, 0));
+server.use((req, res, next) => setTimeout(next, 2000));
 
 // Declaring Custom Routes
 

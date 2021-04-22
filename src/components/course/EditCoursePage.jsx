@@ -4,6 +4,7 @@ import { loadCourses, saveCourse } from '../../redux/actions/courseActions';
 import { loadAuthors } from '../../redux/actions/authorActions';
 import CourseForm from './CourseForm';
 import { newCourse } from '../../mockData2';
+import Spinner from '../shared/Spinner';
 
 function EditCoursePage({
   courses,
@@ -16,6 +17,7 @@ function EditCoursePage({
 }) {
   const [course, setCourse] = useState({ ...props.course });
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
   useEffect(() => {
     if (courses.length === 0) {
       loadCourses().catch((error) => {
@@ -40,34 +42,50 @@ function EditCoursePage({
     }));
   };
 
+  function formIsValid() {
+    const { title, authorId, category } = course;
+    const errors = {};
+
+    if (!title) errors.title = 'Title is required';
+    if (!authorId) errors.author = 'Author is required';
+    if (!category) errors.category = 'Category is required';
+
+    setErrors(errors);
+
+    // form is valid if object has no property
+    return Object.keys(errors).length === 0;
+  }
+
   const handleSave = (event) => {
     event.preventDefault();
-    saveCourse(course).then(() => {
-      history.push('/courses');
-    });
+    if (!formIsValid()) return;
+    setSaving(true);
+    saveCourse(course)
+      .then(() => {
+        history.push('/courses');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   };
 
-  return (
+  return authors.length === 0 || courses.length === 0 ? (
+    <Spinner />
+  ) : (
     <div className='mt-5 py-md-5 px-md-4'>
-      <h2>Edit Course</h2>
-
       <CourseForm
         course={course}
         authors={authors}
         onSave={handleSave}
         onChange={handleChange}
         errors={errors}
+        saving={saving}
       />
     </div>
   );
 }
 
-// Redux=>passing pops and connecting store with CoursePage
-
-/* CoursesPage.prototypes = {
-  actions: PropTypes.object.isRequired,
-  courses: PropTypes.array.isRequired,
-}; */
 export function getCourseBySlug(courses, slug) {
   return courses.find((course) => course.slug === slug) || null;
 }

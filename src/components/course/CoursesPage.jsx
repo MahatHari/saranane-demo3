@@ -8,8 +8,9 @@ import * as authorActions from '../../redux/actions/authorActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import CourseList from './courseList';
+import Spinner from '../shared/Spinner';
 
-function CoursesPage({ courses, authors, actions }) {
+function CoursesPage({ courses, authors, loading, actions }) {
   const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(false);
   useEffect(() => {
     if (courses.length === 0) {
@@ -29,14 +30,20 @@ function CoursesPage({ courses, authors, actions }) {
     <div className='mt-5 py-md-5 px-md-4'>
       {redirectToAddCoursePage && <Redirect to='/course' />}
       <h2>Courses</h2>
-      <button
-        style={{ marginBottom: 20 }}
-        className='btn btn-primary add-course'
-        onClick={() => setRedirectToAddCoursePage(true)}
-      >
-        Add Course
-      </button>
-      <CourseList courses={courses} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <button
+            style={{ marginBottom: 20 }}
+            className='btn btn-primary add-course'
+            onClick={() => setRedirectToAddCoursePage(true)}
+          >
+            Add Course
+          </button>
+          <CourseList courses={courses} />
+        </>
+      )}
     </div>
   );
 }
@@ -49,7 +56,7 @@ CoursesPage.prototypes = {
 };
 
 // courses is state.courses => from store
-function mapStateToProps({ courses, authors }) {
+function mapStateToProps({ courses, authors, apiCallsInProgress }) {
   return {
     authors,
     courses:
@@ -61,6 +68,7 @@ function mapStateToProps({ courses, authors }) {
               authorName: authors.find((a) => a.id === course.authorId).name,
             };
           }),
+    loading: apiCallsInProgress > 0,
   };
 }
 // Dispatching actions to store using bindActionCreators
