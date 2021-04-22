@@ -7,16 +7,16 @@ const path = require('path');
 const router = jsonServer.router(path.join(__dirname, 'db.json'));
 
 //
-const middlewares = jsonServer.defaults({
-  //display json-server's built in homepage when json-server start
-
-  static: 'node_modules/json-server/dist',
-});
+const middlewares = jsonServer.defaults();
+//display json-server's built in homepage when json-server start
 
 // set default middle wares (logger, static cors and no-cache)
 server.use(middlewares);
 
 // To handle POST, PUT and Patch, using JSON server's body parser
+server.use(jsonServer.bodyParser);
+
+// simulate delay on all request
 server.use((req, res, next) => setTimeout(next, 0));
 
 // Declaring Custom Routes
@@ -30,7 +30,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.post('/courses/', (req, res, next) => {
+server.post('/courses/', function (req, res, next) {
   const error = validateCourse(req.body);
   if (error) {
     res.status(400).send(error);
