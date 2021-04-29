@@ -6,6 +6,8 @@ import CourseForm from './CourseForm';
 import { newCourse } from '../../mockData2';
 import Spinner from '../shared/Spinner';
 
+import { toast } from 'react-toastify';
+
 function EditCoursePage({
   courses,
   authors,
@@ -42,7 +44,7 @@ function EditCoursePage({
     }));
   };
 
-  function formIsValid() {
+  const formIsValid = () => {
     const { title, authorId, category } = course;
     const errors = {};
 
@@ -54,7 +56,7 @@ function EditCoursePage({
 
     // form is valid if object has no property
     return Object.keys(errors).length === 0;
-  }
+  };
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -62,6 +64,7 @@ function EditCoursePage({
     setSaving(true);
     saveCourse(course)
       .then(() => {
+        toast.success('Save successful');
         history.push('/courses');
       })
       .catch((error) => {

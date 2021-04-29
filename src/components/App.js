@@ -8,7 +8,8 @@ import Header from './shared/Header';
 import Footer from './shared/Footer';
 import PageNotFound from './PageNotFound';
 import EditCoursePage from './course/EditCoursePage';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className='container-fluid'>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/author' component={AuthorPage} />
         <Route component={PageNotFound} />
       </Switch>
+      <ToastContainer />
       <Footer />
     </div>
   );
