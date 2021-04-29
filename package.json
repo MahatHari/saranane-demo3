@@ -33,6 +33,18 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -48,6 +60,9 @@
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@popperjs/core": "^2.9.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
     "jquery": "^3.6.0",
     "json-server": "^0.16.3",
     "npm-run-all": "^4.1.5",
