@@ -14,6 +14,10 @@ export function updateCourseSuccess(course) {
   return { type: types.UPDATE_COURSE_SUCCESS, course };
 }
 
+export function deleteCourseOptimistic(course) {
+  return { type: types.DELETE_COURSE_OPTIMISTIC, course };
+}
+
 //returning function from a function (Thunks way)
 export function loadCourses() {
   return function (dispatch) {
@@ -44,5 +48,15 @@ export function saveCourse(course) {
         dispatch(apiCallError(err));
         throw err;
       });
+  };
+}
+
+export function deleteCourse(course) {
+  return function (dispatch) {
+    // Immediately dispatching deleteCourse
+    // Not dispatching beginApiCall
+
+    dispatch(deleteCourseOptimistic(course));
+    return courseApi.deleteCourse(course.id);
   };
 }

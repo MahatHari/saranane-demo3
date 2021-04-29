@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import CourseList from './courseList';
 import Spinner from '../shared/Spinner';
+import { toast } from 'react-toastify';
 
 function CoursesPage({ courses, authors, loading, actions }) {
   const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(false);
@@ -26,6 +27,17 @@ function CoursesPage({ courses, authors, loading, actions }) {
     }
   }, [courses.length, authors.length, actions]);
 
+  const handleDeleteCourse = async (course) => {
+    toast.success('course deleted');
+    try {
+      await actions.deleteCourse(course);
+    } catch (error) {
+      toast.error('Delete Failed' + error.message, { autoClose: false });
+    }
+    /* actions.deleteCourse(course).catch((error) => {
+      toast.error('Delete Failed' + error.message, { autoClose: false });
+    }); */
+  };
   return (
     <div className='mt-5 py-md-5 px-md-4'>
       {redirectToAddCoursePage && <Redirect to='/course' />}
@@ -41,7 +53,7 @@ function CoursesPage({ courses, authors, loading, actions }) {
           >
             Add Course
           </button>
-          <CourseList courses={courses} />
+          <CourseList courses={courses} onDeleteClick={handleDeleteCourse} />
         </>
       )}
     </div>
@@ -77,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
     actions: {
       loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
       loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
+      deleteCourse: bindActionCreators(courseActions.deleteCourse, dispatch),
     },
   };
 };

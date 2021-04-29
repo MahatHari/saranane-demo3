@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const CourseList = ({ courses }) => (
+const CourseList = ({ courses, onDeleteClick }) => (
   <div className='table-responsive'>
     <table className='table'>
       <thead>
@@ -34,7 +34,11 @@ const CourseList = ({ courses }) => (
               <td style={{ color: 'white' }}>{course.authorName}</td>
               <td style={{ color: 'white' }}>{course.category}</td>
               <td style={{ color: 'white' }}>
-                <button className='btn btn-danger' style={{ color: 'black' }}>
+                <button
+                  className='btn btn-danger'
+                  style={{ color: 'black' }}
+                  onClick={() => onDeleteClick(course)}
+                >
                   Delete
                 </button>
               </td>
