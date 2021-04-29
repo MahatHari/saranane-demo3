@@ -11,6 +11,7 @@ const CourseList = ({ courses }) => (
           <th>Title</th>
           <th>Author</th>
           <th>Category</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -26,10 +27,17 @@ const CourseList = ({ courses }) => (
                 </a>
               </td>
               <td>
-                <Link to={'/course/' + course.slug}>{course.title}</Link>
+                <Link to={'/course/' + course.slug} style={{ color: 'white' }}>
+                  {course.title}
+                </Link>
               </td>
-              <td>{course.authorName}</td>
-              <td>{course.category}</td>
+              <td style={{ color: 'white' }}>{course.authorName}</td>
+              <td style={{ color: 'white' }}>{course.category}</td>
+              <td style={{ color: 'white' }}>
+                <button className='btn btn-danger' style={{ color: 'black' }}>
+                  Delete
+                </button>
+              </td>
             </tr>
           );
         })}

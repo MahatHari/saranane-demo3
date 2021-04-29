@@ -9,10 +9,10 @@
     },
     {
       "id": 2,
-      "title": "React: The Big Picture",
+      "title": "React: The Big Jkljsldjfsdfasdf",
       "slug": "react-big-picture",
-      "authorId": 1,
-      "category": "JavaScript"
+      "authorId": 2,
+      "category": "c#"
     },
     {
       "id": 3,
@@ -77,6 +77,14 @@
       "category": "Testing ",
       "createdAt": 1619073347016,
       "slug": "testing-this-is-4"
+    },
+    {
+      "id": 12,
+      "title": "Testing",
+      "authorId": 3,
+      "category": "Restaggfgds",
+      "createdAt": 1619087516651,
+      "slug": "testing"
     }
   ],
   "authors": [

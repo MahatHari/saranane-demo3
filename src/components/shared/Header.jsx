@@ -31,7 +31,7 @@ function Header() {
                 exact
                 to='/'
                 activeStyle={activeStyle}
-                className='nav-link display-6'
+                className='nav-link display-6 text-uppercase'
               >
                 Home
               </NavLink>
@@ -40,12 +40,12 @@ function Header() {
               <NavLink
                 to='/courses'
                 activeStyle={activeStyle}
-                className='nav-link display-6'
+                className='nav-link display-6 text-uppercase'
               >
                 Course
               </NavLink>
             </li>
-            <li className='nav-item display-6'>
+            <li className='nav-item display-6 text-uppercase'>
               <NavLink
                 to='/author'
                 activeStyle={activeStyle}
@@ -58,7 +58,7 @@ function Header() {
               <NavLink
                 to='/about'
                 activeStyle={activeStyle}
-                className='nav-link'
+                className='nav-link text-uppercase'
               >
                 About Us
               </NavLink>
